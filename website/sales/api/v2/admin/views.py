@@ -1,3 +1,4 @@
+import django_filters.rest_framework
 from oauth2_provider.contrib.rest_framework import IsAuthenticatedOrTokenHasScope
 from rest_framework import filters, exceptions
 from rest_framework.exceptions import PermissionDenied
@@ -7,6 +8,7 @@ from rest_framework.permissions import DjangoModelPermissions
 from sales.api.v2.admin.permissions import IsManager
 from sales.api.v2.admin.serializers.order import OrderSerializer, OrderListSerializer
 from sales.api.v2.admin.serializers.shift import ShiftSerializer
+from sales.api.v2.filters import ShiftFilter
 from sales.models.order import Order
 from sales.models.shift import Shift
 from thaliawebsite.api.v2.admin import (
@@ -24,10 +26,12 @@ class ShiftListView(AdminListAPIView):
     serializer_class = ShiftSerializer
     queryset = Shift.objects.all()
     filter_backends = (
+        django_filters.rest_framework.DjangoFilterBackend,
         filters.OrderingFilter,
         filters.SearchFilter,
     )
     ordering_fields = ("start", "end")
+    filterset_class = ShiftFilter
     permission_classes = [IsAuthenticatedOrTokenHasScope, DjangoModelPermissions]
     required_scopes = ["sales:admin"]
 

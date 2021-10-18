@@ -38,6 +38,7 @@ PyYAML = "^5.3.1"
 django-debug-toolbar = "^3.1.1"
 pydocstyle = "^6.0.0"
 django-admin-autocomplete-filter = "^0.7"
+django-filter = "^21.1"
 
 [tool.poetry.extras]
 docs = ["recommonmark", "sphinx"]

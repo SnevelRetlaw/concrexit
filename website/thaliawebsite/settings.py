@@ -387,6 +387,7 @@ INSTALLED_APPS = [
     "bootstrap4",
     "tinymce",
     "rest_framework",
+    "django_filters",
     "rest_framework.authtoken",
     "compressor",
     "debug_toolbar",
